@@ -105,9 +105,25 @@
       margin: 3em 0 1em;
       color: #888;
     }
+        #thank-you-popup {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
+   <!-- Thank You Pop-up -->
+  <div id="thank-you-popup">Thank you for your submission! We'll be in touch soon.</div>
   <header>
     <img src="logo.png" alt="Mendip Lavender Logo">
     <h1>Mendip Lavender</h1>
@@ -128,7 +144,12 @@
       <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="email" placeholder="Your email" required>
       <textarea name="message" rows="5" placeholder="Your message" required></textarea>
-      <input type="hidden" name="_captcha" value="false">
+       <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_replyto" value="email">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Thanks for your message – we've received your enquiry and will be in touch soon. Looking forward to speaking with you!">
+        <input type="hidden" name="_next" value="https://mendiplavender.co.uk/?s=1">
+        <input type="text" name="_honey" style="display:none">
       <input type="submit" value="Send Message">
     </form>
 
@@ -151,5 +172,31 @@
   <footer>
     &copy; 2025 Mendip Lavender. All rights reserved.
   </footer>
+    <!-- Scripts -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Thank you pop-up
+      const queryParams = new URLSearchParams(window.location.search);
+      if (queryParams.get("s") === "1") {
+        const popup = document.getElementById("thank-you-popup");
+        popup.style.display = "block";
+        setTimeout(() => {
+          popup.style.display = "none";
+        }, 5000);
+      }
+
+      // Set subject line dynamically
+      const form = document.querySelector("form");
+      const nameField = document.getElementById("name");
+      const subjectField = document.getElementById("custom-subject");
+
+      form.addEventListener("submit", function () {
+        const name = nameField.value.trim() || "New Enquiry";
+        const today = new Date();
+        const formattedDate = today.toISOString().split("T")[0];
+        subjectField.value = `New Enquiry from: ${name} – ${formattedDate}`;
+      });
+    });
+  </script>
 </body>
 </html>
