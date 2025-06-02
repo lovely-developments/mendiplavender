@@ -106,7 +106,7 @@
       margin: 3em 0 1em;
       color: #888;
     }
-        #thank-you-popup {
+    #thank-you-popup {
       display: none;
       position: fixed;
       top: 20px;
@@ -123,7 +123,6 @@
   </style>
 </head>
 <body>
-   <!-- Thank You Pop-up -->
   <div id="thank-you-popup">Thank you for your submission! We'll be in touch soon.</div>
   <header>
     <img src="logo.png" alt="Mendip Lavender Logo">
@@ -145,12 +144,12 @@
       <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="email" placeholder="Your email" required>
       <textarea name="message" rows="5" placeholder="Your message" required></textarea>
-       <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_replyto" value="email">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_autoresponse" value="Thanks for your message – we've received your enquiry and will be in touch soon. Looking forward to speaking with you!">
-        <input type="hidden" name="_next" value="https://mendiplavender.co.uk/?s=1">
-        <input type="text" name="_honey" style="display:none">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_replyto" value="email">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" value="Thanks for your message – we've received your enquiry and will be in touch soon. Looking forward to speaking with you!">
+      <input type="hidden" name="_next" value="https://mendiplavender.co.uk/?s=1">
+      <input type="text" name="_honey" style="display:none">
       <input type="submit" value="Send Message">
     </form>
 
@@ -169,35 +168,14 @@
       <p>My roots are in horticulture &mdash; something I studied when I left school &mdash; and I've always believed in the value of working with plants to support wellbeing, flavour and beauty. Mendip Lavender is a continuation of that path.</p>
     </section>
 
+    <section style="margin-top: 3em; text-align: center;">
+      <h2>Coming Soon</h2>
+      <img src="mendip-lavender-product-range.png" alt="Mendip Lavender Products" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 1em;" />
+    </section>
+
   </main>
   <footer>
     &copy; 2025 Mendip Lavender. All rights reserved.
   </footer>
-    <!-- Scripts -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Thank you pop-up
-      const queryParams = new URLSearchParams(window.location.search);
-      if (queryParams.get("s") === "1") {
-        const popup = document.getElementById("thank-you-popup");
-        popup.style.display = "block";
-        setTimeout(() => {
-          popup.style.display = "none";
-        }, 5000);
-      }
-
-      // Set subject line dynamically
-      const form = document.querySelector("form");
-      const nameField = document.getElementById("name");
-      const subjectField = document.getElementById("custom-subject");
-
-      form.addEventListener("submit", function () {
-        const name = nameField.value.trim() || "New Enquiry";
-        const today = new Date();
-        const formattedDate = today.toISOString().split("T")[0];
-        subjectField.value = `New Enquiry from: ${name} – ${formattedDate}`;
-      });
-    });
-  </script>
 </body>
 </html>
