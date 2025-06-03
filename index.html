@@ -177,5 +177,17 @@
   <footer>
     &copy; 2025 Mendip Lavender. All rights reserved.
   </footer>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const queryParams = new URLSearchParams(window.location.search);
+    if (queryParams.get("s") === "1") {
+      const popup = document.getElementById("thank-you-popup");
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+      }, 5000);
+    }
+  });
+</script>
 </body>
 </html>
